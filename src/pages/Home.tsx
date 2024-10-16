@@ -11,7 +11,7 @@ export default function Home({ topics }: HomeProps) {
 
 	return (
 		<>
-			<Menu topics={topics}/>
+			{/* <Menu topics={topics}/> */}
 			<Grid topic={topics[0]}/>
 		</>
 	);

@@ -9,11 +9,15 @@ interface GridProps {
 
 export default function Grid({ topic }: GridProps) {
 	const [topicImages, setTopicImages] = useState<UnsplashImage[]>([]);
+	// const [rowOneImages, setRowOneImages] = useState<UnsplashImage[]>([]);
+	// const [rowTwoImages, setRowTwoImages] = useState<UnsplashImage[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
-	// console.log('GRID', topic?.id);
-	console.log('GRID Images', topicImages);
+	const halfIndex = Math.ceil(topicImages.length / 2);
+	const rowOneImages = topicImages.slice(0, halfIndex);
+	const rowTwoImages = topicImages.slice(halfIndex, topicImages.length);
+
 
 	useEffect(() => {
 		const getTopicImages = async (topicID: string) => {
@@ -34,13 +38,21 @@ export default function Grid({ topic }: GridProps) {
 	}, [topic]);
 	return (
 		<>
+		
 			{loading && <p>Loading...</p>}
 			{error && <p>{error}</p>}
-			{topicImages.map((image) => (
-				<div key={image.id}>
-					<img src={image.imageURL} alt={image.altDescription} />
+			<div className="space-y-4 bg-red-500">
+				<div className="flex flex-row overflow-x-scroll gap-4">
+					{rowOneImages.map((image) => (
+						<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 flex-shrink-0"/>
+					))}
 				</div>
-			))}
+				<div className="flex overflow-x-scroll gap-4">
+					{rowTwoImages.map((image) => (
+						<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 object-cover flex-shrink-0"/>
+					))}
+				</div>
+			</div>
 		</>
 	);
 }
