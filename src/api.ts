@@ -31,3 +31,34 @@ export const fetchUnsplashTopics = async (): Promise<UnsplashTopic[] | null> => 
 	}
 };
 
+export const fetchUnsplashTopicImages = async (topicId: string): Promise<string[] | null> => {
+	console.log('fetchUnsplashTopicImages', topicId);
+	try {
+		const response = await fetch(`${UNSPLASH_API_URL}/topics/${topicId}/photos`, {
+			headers: {
+				Authorization: `Client-ID ${UNSPLASH_TOKEN}`,
+			},
+		});
+
+		if (!response.ok) {
+			throw new Error(`Error: ${response.statusText}`);
+		}
+
+		const data = await response.json();
+		console.log('data', data);
+
+		const filteredData = data.map((image: any) => {
+			return {
+				id: image.id,
+				imageURL: image.urls.regular,
+				altDescription: image.alt_description,
+			};
+		});
+
+		return filteredData;
+	} catch (error) {
+		console.error('Error fetching Unsplash topic images:', error);
+		return null;
+	}
+};
+
