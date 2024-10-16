@@ -1,9 +1,17 @@
-type Props = {};
+import Menu from '../components/Menu';
+import { UnsplashTopic } from '../types';
 
-export default function Home({}: Props) {
-	// const [topics, setTopics] = useState<UnsplashTopic[]>([]);
-	// const [loading, setLoading] = useState(true);
-	// const [error, setError] = useState<string | null>(null);
+interface HomeProps {
+	topics: UnsplashTopic[];
+};
 
-	return <div>Home</div>;
+export default function Home({ topics }: HomeProps) {
+	console.log('home topics', topics);
+
+	// return <div>Home</div>;
+	return (
+		<>
+			<Menu topics={topics}/>
+		</>
+	);
 }

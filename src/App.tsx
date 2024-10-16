@@ -27,10 +27,9 @@ function App() {
 		getTopics();
 	  }, []);
 
-	  console.log('topics',topics);
 	return (
 		<>
-			<Home />
+			<Home topics={topics}/>
 		</>
 	);
 }

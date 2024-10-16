@@ -1,9 +1,19 @@
 // import React from 'react'
+import { UnsplashTopic } from '../types';
 
-type Props = {}
+interface MenuProps {
+	topics: UnsplashTopic[];
+};
 
-export default function Menu({}: Props) {
+export default function Menu({ topics }: MenuProps) {
 	return (
-		<div>Menu</div>
+		<>
+			{topics.map((topic) => (
+				<div key={topic.id}>
+					<h2>{topic.title}</h2>
+					<p>{topic.slug}</p>
+				</div>
+			))}
+		</>
 	);
 }
