@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import TopicImage from './TopicImage';
 import { UnsplashImage } from '../types';
 import { UnsplashTopic } from '../types';
 import { fetchUnsplashTopicImages } from '../api';
+
 
 
 interface GridProps {
@@ -20,15 +22,19 @@ export default function Grid({ topic }: GridProps) {
 
 
 	useEffect(() => {
+		setLoading(true);
 		const getTopicImages = async (topicID: string) => {
 			if (!topicID) return;
 			const data = await fetchUnsplashTopicImages(topicID);
 			if (data) {
 				setTopicImages(data);
+				setTimeout(() => {
+					setLoading(false);
+				  }, 1000);
+
 			} else {
 				setError('Failed to fetch topics.');
 			}
-			setLoading(false);
 		};
 
 		if (topic?.id) {
@@ -36,38 +42,19 @@ export default function Grid({ topic }: GridProps) {
 		}
 
 	}, [topic]);
-	// return (
-	// 	<>
-		
-	// 		{loading && <p>Loading...</p>}
-	// 		{error && <p>{error}</p>}
-	// 		<div className="space-y-4 bg-red-500">
-	// 			<div className="flex flex-row overflow-x-scroll gap-4">
-	// 				{rowOneImages.map((image) => (
-	// 					<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 flex-shrink-0"/>
-	// 				))}
-	// 			</div>
-	// 			<div className="flex overflow-x-scroll gap-4">
-	// 				{rowTwoImages.map((image) => (
-	// 					<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 object-cover flex-shrink-0"/>
-	// 				))}
-	// 			</div>
-	// 		</div>
-	// 	</>
-	// );
+
+	
 	return (
 		<div className="flex-1 mx-auto bg-red-500 flex items-center justify-center p-4 overflow-y-auto">
-			{loading && <p>Loading...</p>}
-			{error && <p>{error}</p>}
 			<div className="space-y-4">
 				<div className="flex flex-row overflow-x-scroll no-scrollbar gap-4">
 					{rowOneImages.map((image) => (
-						<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 flex-shrink-0" />
+						<TopicImage imageKey={image.id} imageURL={image.imageURL} altDescription={image.altDescription} isLoading={loading} />
 					))}
 				</div>
 				<div className="flex overflow-x-scroll no-scrollbar gap-4">
 					{rowTwoImages.map((image) => (
-						<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 object-cover flex-shrink-0" />
+						<TopicImage imageKey={image.id} imageURL={image.imageURL} altDescription={image.altDescription} isLoading={loading} />
 					))}
 				</div>
 			</div>

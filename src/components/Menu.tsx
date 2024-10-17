@@ -2,7 +2,6 @@ import { UnsplashTopic } from '../types';
 
 interface MenuProps {
 	topics: UnsplashTopic[];
-	// setSelectedTopic: () => void;
 	selectedTopic: string | null;
 	setSelectedTopic: (topic: string) => void;
 };

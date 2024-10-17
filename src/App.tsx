@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
+import { ThemeProvider } from '@material-tailwind/react';
 
 import Home from './pages/Home';
 import { UnsplashTopic } from './types';
 import { fetchUnsplashTopics } from './api';
+
 
 
 
@@ -28,9 +30,9 @@ function App() {
 	  }, []);
 
 	return (
-		<>
+		<ThemeProvider>
 			<Home topics={topics}/>
-		</>
+		</ThemeProvider>
 	);
 }
 
