@@ -29,6 +29,7 @@ function App() {
 		getTopics();
 	  }, []);
 
+	  console.log(loading, error);
 	return (
 		<ThemeProvider>
 			<Home topics={topics}/>

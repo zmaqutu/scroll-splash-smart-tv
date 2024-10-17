@@ -43,7 +43,7 @@ export default function Grid({ topic }: GridProps) {
 
 	}, [topic]);
 
-	
+	console.log(loading, error);
 	return (
 		<div className="flex-1 mx-auto bg-red-500 flex items-center justify-center p-4 overflow-y-auto">
 			<div className="space-y-4">
