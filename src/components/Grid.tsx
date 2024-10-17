@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { UnsplashImage, UnsplashTopic } from '../types';
+import { UnsplashImage } from '../types';
+import { UnsplashTopic } from '../types';
 import { fetchUnsplashTopicImages } from '../api';
+
 
 interface GridProps {
 	topic: UnsplashTopic;
@@ -9,8 +11,6 @@ interface GridProps {
 
 export default function Grid({ topic }: GridProps) {
 	const [topicImages, setTopicImages] = useState<UnsplashImage[]>([]);
-	// const [rowOneImages, setRowOneImages] = useState<UnsplashImage[]>([]);
-	// const [rowTwoImages, setRowTwoImages] = useState<UnsplashImage[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 

@@ -47,7 +47,7 @@ export const fetchUnsplashTopicImages = async (topicId: string): Promise<Unsplas
 		const data = await response.json();
 		console.log('data', data);
 
-		const filteredData = data.map((image: any) => {
+		const filteredData: UnsplashImage[] = data.map((image: any) => {
 			return {
 				id: image.id,
 				imageURL: image.urls.small,
