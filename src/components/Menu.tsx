@@ -1,4 +1,3 @@
-// import React from 'react'
 import { UnsplashTopic } from '../types';
 
 interface MenuProps {
@@ -7,13 +6,21 @@ interface MenuProps {
 
 export default function Menu({ topics }: MenuProps) {
 	return (
-		<>
-			{topics.map((topic) => (
-				<div key={topic.id}>
-					<h2>{topic.title}</h2>
-					<p>{topic.slug}</p>
-				</div>
-			))}
-		</>
+		<div className="w-1/4 h-screen bg-red-200 p-4 flex flex-col">
+			<h2 className="text-xl font-bold text-center mb-4 bg-gray-500 p-2 text-white">
+				Animation
+			</h2>
+			<div className="flex-1 overflow-y-auto grid grid-cols-1 gap-2 auto-rows-fr">
+				{topics.map((topic) => (
+					<button 
+						key={topic.id} 
+						className="bg-gray-300 text-gray-700 p-4 rounded hover:bg-gray-400 transition"
+					>
+						{topic.title}
+					</button>
+				))}
+			</div>
+		</div>
 	);
 }
+
