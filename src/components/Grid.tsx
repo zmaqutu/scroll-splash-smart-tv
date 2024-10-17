@@ -36,23 +36,41 @@ export default function Grid({ topic }: GridProps) {
 		}
 
 	}, [topic]);
-	return (
-		<>
+	// return (
+	// 	<>
 		
+	// 		{loading && <p>Loading...</p>}
+	// 		{error && <p>{error}</p>}
+	// 		<div className="space-y-4 bg-red-500">
+	// 			<div className="flex flex-row overflow-x-scroll gap-4">
+	// 				{rowOneImages.map((image) => (
+	// 					<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 flex-shrink-0"/>
+	// 				))}
+	// 			</div>
+	// 			<div className="flex overflow-x-scroll gap-4">
+	// 				{rowTwoImages.map((image) => (
+	// 					<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 object-cover flex-shrink-0"/>
+	// 				))}
+	// 			</div>
+	// 		</div>
+	// 	</>
+	// );
+	return (
+		<div className="flex-1 mx-auto bg-red-500 flex items-center justify-center p-4 overflow-y-auto">
 			{loading && <p>Loading...</p>}
 			{error && <p>{error}</p>}
-			<div className="space-y-4 bg-red-500">
-				<div className="flex flex-row overflow-x-scroll gap-4">
+			<div className="space-y-4">
+				<div className="flex flex-row overflow-x-scroll no-scrollbar gap-4">
 					{rowOneImages.map((image) => (
-						<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 flex-shrink-0"/>
+						<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 flex-shrink-0" />
 					))}
 				</div>
-				<div className="flex overflow-x-scroll gap-4">
+				<div className="flex overflow-x-scroll no-scrollbar gap-4">
 					{rowTwoImages.map((image) => (
-						<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 object-cover flex-shrink-0"/>
+						<img key={image.id} src={image.imageURL} alt={image.altDescription} className="w-64 h-64 object-cover flex-shrink-0" />
 					))}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

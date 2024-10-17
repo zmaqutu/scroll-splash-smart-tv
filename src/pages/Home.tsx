@@ -9,18 +9,14 @@ interface HomeProps {
 };
 
 export default function Home({ topics }: HomeProps) {
-	// console.log('home topics', topics);
 	const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
-	// console.log('selectedTopic', selectedTopic);
-	// console.log('topics', topics);
 
 	const selectedTopicData = topics.find((topic) => topic.title === selectedTopic) || topics[0];
-	console.log('selectedTopicData', selectedTopicData);
 
 	return (
-		<>
-			<Menu topics={topics} setSelectedTopic={setSelectedTopic}/>
+		<div className="flex h-screen">
+			<Menu topics={topics} setSelectedTopic={setSelectedTopic} selectedTopic={selectedTopic}/>
 			<Grid topic={selectedTopicData}/>
-		</>
+		</div>
 	);
 }
