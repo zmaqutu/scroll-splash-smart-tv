@@ -12,7 +12,7 @@ export default function Image({imageKey, imageURL, altDescription, isLoading}: I
 	return (
 		<>
 			{!isLoading ? (
-				<img key={imageKey} src={imageURL} alt={altDescription} className="w-64 h-64 object-cover flex-shrink-0"/>
+				<img key={imageKey} src={imageURL} alt={altDescription} className="w-64 h-64 object-cover flex-shrink-0 border border-gray-300"/>
 			) : (
 				<div className="w-64 h-64 object-cover flex-shrink-0">
 					<ImagePlacehoderSkeleton />

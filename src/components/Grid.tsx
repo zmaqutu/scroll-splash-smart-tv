@@ -45,7 +45,7 @@ export default function Grid({ topic }: GridProps) {
 
 	console.log(loading, error);
 	return (
-		<div className="flex-1 mx-auto bg-red-500 flex items-center justify-center p-4 overflow-y-auto">
+		<div className="flex-1 mx-auto bg-gray-900 flex items-center justify-center p-4 overflow-y-auto">
 			<div className="space-y-4">
 				<div className="flex flex-row overflow-x-scroll no-scrollbar gap-4">
 					{rowOneImages.map((image) => (
