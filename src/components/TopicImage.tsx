@@ -1,4 +1,3 @@
-// import React from 'react';
 import { ImagePlacehoderSkeleton } from './ImagePlaceHolderSkeleton';
 
 interface ImageProps {
@@ -10,14 +9,14 @@ interface ImageProps {
 
 export default function Image({imageKey, imageURL, altDescription, isLoading}: ImageProps) {
 	return (
-		<>
+		<div className="aspect-square flex-shrink-0">
 			{!isLoading ? (
-				<img key={imageKey} src={imageURL} alt={altDescription} className="w-64 h-64 object-cover flex-shrink-0 border border-gray-300"/>
+				<img key={imageKey} src={imageURL} alt={altDescription} className="object-cover w-full h-full border border-gray-300"/>
 			) : (
-				<div className="w-64 h-64 object-cover flex-shrink-0">
+				<div className="object-cover w-full h-full border border-gray-300">
 					<ImagePlacehoderSkeleton />
 				</div>
 			)}
-		</>
+		</div>
 	);
 }

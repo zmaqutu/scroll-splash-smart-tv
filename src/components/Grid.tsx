@@ -46,13 +46,13 @@ export default function Grid({ topic }: GridProps) {
 	console.log(loading, error);
 	return (
 		<div className="flex-1 mx-auto bg-gray-900 flex items-center justify-center p-4 overflow-y-auto">
-			<div className="space-y-4">
-				<div className="flex flex-row overflow-x-scroll no-scrollbar gap-4">
+			<div className="space-y-4 w-full h-full flex flex-col">
+				<div className="flex flex-row overflow-x-scroll no-scrollbar gap-4 h-1/2">
 					{rowOneImages.map((image) => (
 						<TopicImage imageKey={image.id} imageURL={image.imageURL} altDescription={image.altDescription} isLoading={loading} />
 					))}
 				</div>
-				<div className="flex overflow-x-scroll no-scrollbar gap-4">
+				<div className="flex overflow-x-scroll no-scrollbar gap-4 h-1/2">
 					{rowTwoImages.map((image) => (
 						<TopicImage imageKey={image.id} imageURL={image.imageURL} altDescription={image.altDescription} isLoading={loading} />
 					))}
