@@ -9,9 +9,10 @@ import { fetchUnsplashTopicImages } from '../api';
 
 interface GridProps {
 	topic: UnsplashTopic;
+	isGridActive: boolean;
 }
 
-export default function Grid({ topic }: GridProps) {
+export default function Grid({ topic, isGridActive }: GridProps) {
 	const [topicImages, setTopicImages] = useState<UnsplashImage[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
@@ -48,6 +49,7 @@ export default function Grid({ topic }: GridProps) {
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
+			if (!isGridActive) return;
 			const currentRow = selectedImage?.[0] ?? 0;
 			const currentColumn = selectedImage?.[1] ?? 0;
 			if (event.key === 'ArrowRight') {
@@ -79,14 +81,16 @@ export default function Grid({ topic }: GridProps) {
 	}, [selectedImage, rowOneImages]);
 
 	const handleImageSelect = (selectedImageIndex: number[]) => {
+		if (!isGridActive) return;
 		setSelectedImage(selectedImageIndex);
 	};
 
-	console.log(loading, error);
+	console.log(error);
 	return (
 		<div className="flex-1 mx-auto bg-gray-900 flex items-center justify-center p-4 overflow-y-auto">
 			<div className="space-y-4 w-full h-full flex flex-col">
-				<div className="flex flex-row overflow-x-scroll no-scrollbar gap-4 h-1/2">
+				{/* <div className="flex flex-row overflow-x-scroll no-scrollbar gap-4 h-1/2"> */}
+				<div className={`flex flex-row ${isGridActive ? 'overflow-x-scroll' : 'overflow-x-hidden'} no-scrollbar gap-4 h-1/2`}>
 					{rowOneImages.map((image, imageIndex) => (
 						<TopicImage imageKey={image.id}
 							imageURL={image.imageURL}
@@ -98,7 +102,8 @@ export default function Grid({ topic }: GridProps) {
 						/>
 					))}
 				</div>
-				<div className="flex overflow-x-scroll no-scrollbar gap-4 h-1/2">
+				{/* <div className="flex overflow-x-scroll no-scrollbar gap-4 h-1/2"> */}
+				<div className={`flex flex-row ${isGridActive ? 'overflow-x-scroll' : 'overflow-x-hidden'} no-scrollbar gap-4 h-1/2`}>
 					{rowTwoImages.map((image, imageIndex) => (
 						<TopicImage imageKey={image.id}
 							imageURL={image.imageURL}

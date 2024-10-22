@@ -32,7 +32,6 @@ export const fetchUnsplashTopics = async (): Promise<UnsplashTopic[] | null> => 
 };
 
 export const fetchUnsplashTopicImages = async (topicId: string): Promise<UnsplashImage[] | null> => {
-	console.log('fetchUnsplashTopicImages', topicId);
 	try {
 		const response = await fetch(`${UNSPLASH_API_URL}/topics/${topicId}/photos`, {
 			headers: {
@@ -45,7 +44,6 @@ export const fetchUnsplashTopicImages = async (topicId: string): Promise<Unsplas
 		}
 
 		const data = await response.json();
-		console.log('data', data);
 
 		const filteredData: UnsplashImage[] = data.map((image: any) => {
 			return {
