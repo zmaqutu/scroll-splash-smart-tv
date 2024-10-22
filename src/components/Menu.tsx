@@ -9,6 +9,9 @@ interface MenuProps {
 export default function Menu({ topics, selectedTopic, setSelectedTopic }: MenuProps) {
 
 	const handleButtonClick = (topic: UnsplashTopic) => {
+		console.log('topic', topic.title);
+		console.log('selectedTopic', selectedTopic);
+
 		setSelectedTopic(topic.title);
 	};
 
@@ -18,7 +21,7 @@ export default function Menu({ topics, selectedTopic, setSelectedTopic }: MenuPr
 				{topics.map((topic) => (
 					<button
 						key={topic.id}
-						className={`bg-blue-500 text-white p-4 rounded hover:bg-blue-400 transition ${selectedTopic === topic.title ? 'bg-blue-400 text-white' : ''}`}
+						className={`bg-blue-500 text-white p-4 rounded hover:bg-blue-700 transition ${selectedTopic === topic.title ? 'bg-red-400' : ''}`}
 						onClick={() => handleButtonClick(topic)}
 					>
 						{topic.title}
