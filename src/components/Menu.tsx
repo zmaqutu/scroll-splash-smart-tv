@@ -2,11 +2,10 @@ import { UnsplashTopic } from '../types';
 
 interface MenuProps {
 	topics: UnsplashTopic[];
-	selectedTopic: string | null;
 	setSelectedTopic: (topic: string) => void;
 };
 
-export default function Menu({ topics, selectedTopic, setSelectedTopic }: MenuProps) {
+export default function Menu({ topics, setSelectedTopic }: MenuProps) {
 
 	const handleButtonClick = (topic: UnsplashTopic) => {
 		setSelectedTopic(topic.title);

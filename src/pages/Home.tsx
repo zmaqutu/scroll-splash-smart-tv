@@ -33,11 +33,14 @@ export default function Home({ topics }: HomeProps) {
 					defaultChecked={isSwitchOn}
 					color='blue'
 					onChange={handleToggle}
+					onPointerEnterCapture={undefined}
+					onPointerLeaveCapture={undefined}
+					crossOrigin={undefined}
 				/>
 			</nav>
 			<div className="flex flex-1 overflow-hidden"> {/* This takes the remaining height */}
 				{isSwitchOn ?
-					<Menu topics={topics} setSelectedTopic={setSelectedTopic} selectedTopic={selectedTopic} /> :
+					<Menu topics={topics} setSelectedTopic={setSelectedTopic} /> :
 					null
 				}
 				<Grid topic={selectedTopicData} isGridActive={isGridActive} />
