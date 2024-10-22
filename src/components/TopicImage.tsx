@@ -1,5 +1,6 @@
-import { ImagePlacehoderSkeleton } from './ImagePlaceHolderSkeleton';
+import { useEffect, useRef } from 'react';
 
+import { ImagePlacehoderSkeleton } from './ImagePlaceHolderSkeleton';
 interface ImageProps {
 	imageKey: string;
 	imageURL: string;
@@ -12,9 +13,17 @@ interface ImageProps {
 
 export default function Image({ imageKey, imageURL, altDescription, isLoading, imageIndex, onSelect, selectedImage }: ImageProps) {
 
+	const imageRef = useRef<HTMLDivElement>(null);
 	const isActive = selectedImage?.join() === imageIndex.join();
+
+	useEffect(() => {
+		if (isActive && imageRef.current) {
+			imageRef.current.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+		}
+	}, [isActive]);
+
 	return (
-		<div className="aspect-square flex-shrink-0" onClick={() => onSelect && onSelect()}>
+		<div ref={imageRef} className="aspect-square flex-shrink-0" onClick={() => onSelect && onSelect()}>
 			{!isLoading ? (
 				<img
 					key={imageKey}

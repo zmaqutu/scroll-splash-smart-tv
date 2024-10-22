@@ -21,13 +21,9 @@ export default function Menu({ topics, selectedTopic, setSelectedTopic }: MenuPr
 				{topics.map((topic) => (
 					<button
 						key={topic.id}
-						// className="bg-gray-300 text-gray-700 p-4 rounded hover:bg-gray-400 transition"
 						className={`bg-blue-500 text-white p-4 rounded hover:bg-blue-400 transition ${selectedTopic === topic.title ? 'bg-blue-400 text-white' : ''}`}
 						onClick={() => handleButtonClick(topic)}
 					>
-						{/* <div className={`absolute left-0 w-2 h-full ${selectedTopic === topic.title ? 'bg-yellow-400' : 'bg-transparent'}`}></div> */}
-						{/* Button text */}
-						{/* <span className={`${selectedTopic === topic.title ? 'text-white' : 'text-gray-700'}`}> */}
 						{topic.title}
 					</button>
 				))}

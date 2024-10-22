@@ -48,36 +48,6 @@ export default function Grid({ topic }: GridProps) {
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
-			// switch (event.key) {
-			// 	case 'ArrowRight':
-			// 		console.log('ArrowRight');
-			// 		// Move to the next image
-			// 		const currentRow = selectedImage?.[0] ?? 0;
-			// 		const currentColumn = selectedImage?.[1] ?? 0;
-			// 		const nextRow = currentRow;
-			// 		const nextColumn = Math.min(currentColumn + 1, rowOneImages.length - 1);
-			// 		setSelectedImage([nextRow, nextColumn]);
-			// 		break;
-			// 	case 'ArrowLeft':
-			// 		console.log('ArrowLeft');
-			// 		// Move to the previous image
-			// 		const nextRow = currentRow;
-			// 		const nextColumn = Math.max(currentColumn - 1, 0);
-			// 		// selectImage(selectedImageIndex - 1);
-			// 		break;
-			// 	case 'ArrowDown':
-			// 		console.log('ArrowDown');
-			// 		// Move to the previous image
-			// 		// selectImage(selectedImageIndex - 1);
-			// 		break;
-			// 	case 'ArrowUp':
-			// 		console.log('ArrowUp');
-			// 		// Move to the previous image
-			// 		// selectImage(selectedImageIndex - 1);
-			// 		break;
-			// 	default:
-			// 		break;
-			// }
 			const currentRow = selectedImage?.[0] ?? 0;
 			const currentColumn = selectedImage?.[1] ?? 0;
 			if (event.key === 'ArrowRight') {
