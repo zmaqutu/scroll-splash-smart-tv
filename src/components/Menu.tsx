@@ -14,9 +14,6 @@ export default function Menu({ topics, selectedTopic, setSelectedTopic }: MenuPr
 
 	return (
 		<div className="w-1/4 h-full bg-gray-800 p-4 flex flex-col">
-			<h2 className="text-xl font-bold text-center mb-4 bg-gray-500 p-2 text-white">
-				Animation
-			</h2>
 			<div className="flex-1 overflow-y-auto grid grid-cols-1 gap-2 auto-rows-fr">
 				{topics.map((topic) => (
 					<button
