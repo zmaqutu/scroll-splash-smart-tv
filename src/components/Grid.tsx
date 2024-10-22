@@ -15,7 +15,7 @@ export default function Grid({ topic }: GridProps) {
 	const [topicImages, setTopicImages] = useState<UnsplashImage[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
-	const [selectedImage, setSelectedImage] = useState<number[] | null>(null); // Track selected image
+	const [selectedImage, setSelectedImage] = useState<number[] | null>([0, 0]); // Track selected image
 
 
 	const halfIndex = Math.ceil(topicImages.length / 2);
@@ -32,6 +32,7 @@ export default function Grid({ topic }: GridProps) {
 				setTopicImages(data);
 				setTimeout(() => {
 					setLoading(false);
+					setSelectedImage([0, 0]);
 				}, 1000);
 
 			} else {
@@ -45,8 +46,69 @@ export default function Grid({ topic }: GridProps) {
 
 	}, [topic]);
 
+	useEffect(() => {
+		const handleKeyDown = (event: KeyboardEvent) => {
+			// switch (event.key) {
+			// 	case 'ArrowRight':
+			// 		console.log('ArrowRight');
+			// 		// Move to the next image
+			// 		const currentRow = selectedImage?.[0] ?? 0;
+			// 		const currentColumn = selectedImage?.[1] ?? 0;
+			// 		const nextRow = currentRow;
+			// 		const nextColumn = Math.min(currentColumn + 1, rowOneImages.length - 1);
+			// 		setSelectedImage([nextRow, nextColumn]);
+			// 		break;
+			// 	case 'ArrowLeft':
+			// 		console.log('ArrowLeft');
+			// 		// Move to the previous image
+			// 		const nextRow = currentRow;
+			// 		const nextColumn = Math.max(currentColumn - 1, 0);
+			// 		// selectImage(selectedImageIndex - 1);
+			// 		break;
+			// 	case 'ArrowDown':
+			// 		console.log('ArrowDown');
+			// 		// Move to the previous image
+			// 		// selectImage(selectedImageIndex - 1);
+			// 		break;
+			// 	case 'ArrowUp':
+			// 		console.log('ArrowUp');
+			// 		// Move to the previous image
+			// 		// selectImage(selectedImageIndex - 1);
+			// 		break;
+			// 	default:
+			// 		break;
+			// }
+			const currentRow = selectedImage?.[0] ?? 0;
+			const currentColumn = selectedImage?.[1] ?? 0;
+			if (event.key === 'ArrowRight') {
+				const nextRow = currentRow;
+				const nextColumn = Math.min(currentColumn + 1, rowOneImages.length - 1);
+				setSelectedImage([nextRow, nextColumn]);
+			} else if (event.key === 'ArrowLeft') {
+				const nextRow = currentRow;
+				const nextColumn = Math.max(currentColumn - 1, 0);
+				setSelectedImage([nextRow, nextColumn]);
+			} else if (event.key === 'ArrowDown') {
+				const nextRow = Math.min(currentRow + 1, 1);
+				const nextColumn = currentColumn;
+				setSelectedImage([nextRow, nextColumn]);
+			} else if (event.key === 'ArrowUp') {
+				const nextRow = Math.max(currentRow - 1, 0);
+				const nextColumn = currentColumn;
+				setSelectedImage([nextRow, nextColumn]);
+			}
+		};
+
+		// Add the event listener for keydown
+		window.addEventListener('keydown', handleKeyDown);
+
+		// Cleanup the event listener on unmount
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown);
+		};
+	}, [selectedImage, rowOneImages]);
+
 	const handleImageSelect = (selectedImageIndex: number[]) => {
-		console.log('Image selected:', selectedImageIndex);
 		setSelectedImage(selectedImageIndex);
 	};
 
