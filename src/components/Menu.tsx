@@ -29,7 +29,6 @@ export default function Menu({ topics, selectedTopic, setSelectedTopic }: MenuPr
 						{/* Button text */}
 						{/* <span className={`${selectedTopic === topic.title ? 'text-white' : 'text-gray-700'}`}> */}
 						{topic.title}
-						{/* </span> */}
 					</button>
 				))}
 			</div>
